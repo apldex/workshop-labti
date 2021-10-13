@@ -8,9 +8,9 @@ package product
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/apldex/workshop-labti/internal/pkg/httputils"
 	"github.com/apldex/workshop-labti/internal/pkg/model"
 	usecaseProduct "github.com/apldex/workshop-labti/internal/pkg/usecase/product"
-	"github.com/apldex/workshop-labti/internal/pkg/utils"
 	"io/ioutil"
 	"net/http"
 )
@@ -33,7 +33,7 @@ func (h *handler) CreateProduct(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		err = fmt.Errorf("read request body failed: %v", err)
 
-		utils.RespondErrWithJSON(w, http.StatusInternalServerError, err)
+		httputils.RespondErrWithJSON(w, http.StatusInternalServerError, err)
 		return
 	}
 
@@ -42,17 +42,17 @@ func (h *handler) CreateProduct(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		err = fmt.Errorf("unmarshal json failed: %v", err)
 
-		utils.RespondErrWithJSON(w, http.StatusInternalServerError, err)
+		httputils.RespondErrWithJSON(w, http.StatusInternalServerError, err)
 		return
 	}
 
 	err = h.uc.CreateProduct(r.Context(), &product)
 	if err != nil {
-		utils.RespondErrWithJSON(w, http.StatusInternalServerError, err)
+		httputils.RespondErrWithJSON(w, http.StatusInternalServerError, err)
 		return
 	}
 
-	utils.RespondWithJSON(w, http.StatusOK, map[string]interface{}{"message": "OK"})
+	httputils.RespondWithJSON(w, http.StatusOK, map[string]interface{}{"message": "OK"})
 }
 
 func (h *handler) GetProduct(w http.ResponseWriter, r *http.Request) {}

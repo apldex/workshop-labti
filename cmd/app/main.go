@@ -8,10 +8,10 @@ package main
 import (
 	"context"
 	"flag"
+	"github.com/apldex/workshop-labti/internal/pkg/config"
 	handlerProduct "github.com/apldex/workshop-labti/internal/pkg/handler/product"
 	"github.com/apldex/workshop-labti/internal/pkg/resource/db"
 	usecaseProduct "github.com/apldex/workshop-labti/internal/pkg/usecase/product"
-	"github.com/apldex/workshop-labti/internal/pkg/utils/config"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
